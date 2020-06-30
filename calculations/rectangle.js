@@ -1,4 +1,4 @@
-class Rectangle {
+module.exports = class Rectangle {
   
   constructor(width, height) {
     this.width = parseFloat(width);
@@ -26,7 +26,7 @@ class Rectangle {
     return Rectangle.calcArea(this.width, this.height);
   }
 
-  get aspect_ratio() {
+  get aspectRatio() {
     return Rectangle.calcAspectRatioFloat(this.width, this.height);
   }
 
@@ -47,22 +47,28 @@ class Rectangle {
     return parseFloat(width) / parseFloat(height);
   }
 
-  static calcDimensionsFromDiagonalRatio(diag_len, aspect_ratio) {
-    const diag = parseFloat(diag_len), ratio = Number(aspect_ratio);
-    return {
-      width: diag / Math.sqrt((1 / Math.pow(ratio, 2)) + 1),
-      height: diag / Math.sqrt(Math.pow(ratio, 2) + 1),
-      diagonal: diag_len,
-      aspect_ratio: aspect_ratio
-    }
+  static calcDimensionsFromDiagonalRatio(diagLen, aspectRatio) {
+    const diag = parseFloat(diagLen), ratio = Number(aspectRatio);
+    return [
+      diag / Math.sqrt((1 / Math.pow(ratio, 2)) + 1),
+      diag / Math.sqrt(Math.pow(ratio, 2) + 1)
+    ];
   }
 
-  static calcHeightFromWidthRatio(width, aspect_ratio) {
-    // const width = parseFloat(width), ratio = Number(aspect_ratio);
+  static calcDimensionsFromAreaRatio(area, aspectRatio) {
+    const a = parseFloat(area), ratio = Number(aspectRatio);
+    return [
+      Math.sqrt(a / ratio) * ratio,
+      Math.sqrt(a / ratio)
+    ];
   }
 
-  static calcWidthFromHeightRatio(height, aspect_ratio) {
-    // const height = parseFloat(height), ratio = Number(aspect_ratio);
+  static calcWidthFromHeightRatio(height, aspectRatio) {
+    return parseFloat(height) * Number(aspectRatio);
+  }
+
+  static calcHeightFromWidthRatio(width, aspectRatio) {
+    return parseFloat(width) * Number(aspectRatio);
   }
 
   static isValidDimensions(dimensions) {
@@ -72,16 +78,3 @@ class Rectangle {
   }
 
 }
-
-const box = new Rectangle(16,9);
-console.log(box.width); // Expect 16
-console.log(box.height); // Expect 9
-console.log(box.area); // Expect 144
-console.log(box.diagonal); // Expect 18.36
-console.log(box.aspect_ratio); // Expect 1.7778
-console.log(Rectangle.calcDimensionsFromDiagonalRatio(box.diagonal, box.aspect_ratio));
-box.dimensions = ['11.278"','7.049"'];
-console.log(box.width); // Expect 11.278
-console.log(box.height); // Expect 7.049
-console.log(box.area); // Expect 79.498622
-console.log(box.diagonal); // Expect 13.3

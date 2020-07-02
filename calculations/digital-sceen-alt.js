@@ -20,7 +20,11 @@ module.exports = class DigitalScreen {
       formatted: null,
       float: null
     };
-    this.ppu = null;
+  }
+
+  // Computed property name for pixel-density. this.ppi = pxPerInch, this.ppcm = pxPerCentimeter
+  get [this.size.units === 'cm' ? 'ppcm' : 'ppi']() {
+
   }
 
   set size(sizeInfo) {}

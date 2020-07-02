@@ -1,9 +1,23 @@
 const Rectangle = require('./rectangle.js');
 const DigitalScreen = require('./digital-screen.js');
 
+
+
+// Computer screens and monitors
 const rect = new Rectangle(16,10);
-const macbook = new DigitalScreen(13.3, 2560, 1600);
-const dell27 = new DigitalScreen(27, 2560, 1440);
+const macbook = new DigitalScreen(13.3, 1280, 800);
+const macbookRetina = new DigitalScreen(13.3, 2560, 1600);
+const imac21HD = new DigitalScreen(21.5, 1920, 1080);
+const imac21Retina = new DigitalScreen(21.5, 4096, 2304);
+const imac27old = new DigitalScreen(27, 2560, 1440);
+const imac27Retina = new DigitalScreen(27, 5120, 2880);
+const QHD27 = new DigitalScreen(27, 2560, 1440);
+const UHD27 = new DigitalScreen(27, 3840, 2160);
+const fullHD24 = new DigitalScreen(23.8, 1920, 1080);
+const fourK24 = new DigitalScreen(23.8, 3840, 2160);
+const retina24 = new DigitalScreen(23.8, 4709, 2649);
+const retina19 = new DigitalScreen(19.4, 3840, 2160);
+const eightK32 = new DigitalScreen(31.5, 7680, 4320);
 const fireHD10 = new DigitalScreen(10.1, 1920, 1200);
 
 function testRectangle(rect) {
@@ -34,7 +48,8 @@ function testDigitalScreen(screen) {
 }
 
 // testRectangle(rect);
-// testDigitalScreen(macbook);
-// testDigitalScreen(dell27);
+// testDigitalScreen(macbookRetina);
 // testDigitalScreen(fireHD10);
+testDigitalScreen(eightK32);
+
 
